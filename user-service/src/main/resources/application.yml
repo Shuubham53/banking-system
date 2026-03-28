@@ -4,13 +4,12 @@ server:
 spring:
   application:
     name: user-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/user_service_db
-    username: postgres
-    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
+
+jwt:
+  expiration: 86400000
 
 eureka:
   client:

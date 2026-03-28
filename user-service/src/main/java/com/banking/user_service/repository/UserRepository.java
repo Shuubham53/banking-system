@@ -1,6 +1,6 @@
 package com.banking.user_service.repository;
 
-import org.apache.catalina.User;
+import com.banking.user_service.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
