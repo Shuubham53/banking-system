@@ -7,6 +7,7 @@ import com.banking.user_service.enums.Role;
 import com.banking.user_service.error.UserAlreadyExistsException;
 import com.banking.user_service.repository.UserRepository;
 import com.banking.user_service.security.JwtUtil;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -27,6 +29,7 @@ public class UserService {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
+    @Transactional
     public String register(RegisterRequest request){
         log.info("User trying to Register");
         userRepository.findByUsername(request.getUsername())

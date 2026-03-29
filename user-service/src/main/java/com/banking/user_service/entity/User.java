@@ -3,14 +3,17 @@ package com.banking.user_service.entity;
 
 import com.banking.user_service.enums.Role;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
+
 public class User {
 
     @Id

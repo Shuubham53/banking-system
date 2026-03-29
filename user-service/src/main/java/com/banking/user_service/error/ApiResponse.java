@@ -1,10 +1,12 @@
 package com.banking.user_service.error;
 
 import lombok.Builder;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Builder
+@Data
 public class ApiResponse<T>{
     private boolean success;
     private String message;
