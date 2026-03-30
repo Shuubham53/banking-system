@@ -30,6 +30,7 @@ public class JwtsUtilTest {
         System.out.println(token);
         assertNotNull(token);
     }
+    
 
     @Test
     void shouldExtractUsernameFromToken(){
