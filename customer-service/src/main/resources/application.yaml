@@ -2,16 +2,22 @@ server:
   port: 8082
 
 spring:
+  profiles:
+    active: local
   application:
     name: customer-service
   jpa:
     hibernate:
       ddl-auto: update
   kafka:
-    bootstrap-servers: localhost:9092
     consumer:
       group-id: customer-service-group
       auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.banking.customer_service.event.UserCreatedEvent
 
 eureka:
   client:
