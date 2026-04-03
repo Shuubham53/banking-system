@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer_service_db
+    username: postgres
+    password: 1234
+
+jwt:
+  secret: banking-system-local-secret-key-256-bits
+  expiration: 86400000

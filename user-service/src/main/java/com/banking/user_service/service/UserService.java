@@ -5,6 +5,8 @@ import com.banking.user_service.dto.RegisterRequest;
 import com.banking.user_service.entity.User;
 import com.banking.user_service.enums.Role;
 import com.banking.user_service.error.UserAlreadyExistsException;
+import com.banking.user_service.event.UserCreatedEvent;
+import com.banking.user_service.kafka.UserEventProducer;
 import com.banking.user_service.repository.UserRepository;
 import com.banking.user_service.security.JwtUtil;
 
@@ -28,6 +30,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+    private final UserEventProducer userEventProducer;
 
     @Transactional
     public String register(RegisterRequest request){
@@ -44,6 +47,12 @@ public class UserService {
                .build();
          userRepository.save(user);
         log.info("User registered successfully");
+        UserCreatedEvent event = UserCreatedEvent.builder()
+                .userId(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .build();
+        userEventProducer.publishUserCreatedEvent(event);
         return "User registered successfully";
     }
 
