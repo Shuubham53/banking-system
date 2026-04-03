@@ -3,7 +3,6 @@ package com.banking.customer_service.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,10 +11,9 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
-@RequiredArgsConstructor
 @Service
 @Slf4j
-public class JwtUtil{
+public class JwtUtil {
 
     @Value("${jwt.secret}")
     private String secretKey;
@@ -44,7 +42,6 @@ public class JwtUtil{
                 .parseClaimsJws(token)
                 .getBody();
         return claims.getSubject();
-
     }
 
     public boolean validateToken(String token) {
@@ -55,10 +52,9 @@ public class JwtUtil{
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
-            return !claims.getExpiration().before(new Date());  // ← return directly
+            return !claims.getExpiration().before(new Date());
         } catch (Exception e) {
             log.error("Token validation failed: {}", e.getMessage());
-            e.printStackTrace();
             return false;
         }
     }
