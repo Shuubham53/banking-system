@@ -1,4 +1,4 @@
-package com.banking.account_service.service;
+package com.banking.account_service.security;
 
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.FilterChain;
