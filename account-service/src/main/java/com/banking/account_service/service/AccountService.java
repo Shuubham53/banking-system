@@ -13,6 +13,7 @@ import com.banking.account_service.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final CustomerClient customerClient;
 
+    @Transactional
     public AccountResponse createAccount(AccountRequest request) {
         log.info("Creating account for customerId: {}", request.getCustomerId());
         try{
