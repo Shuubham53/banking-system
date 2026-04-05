@@ -1,9 +1,9 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://prod-server:5432/customer_service_db
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-
-jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://prod-server:5432/customer_service_db
+#    username: ${DB_USERNAME}
+#    password: ${DB_PASSWORD}
+#
+#jwt:
+#  secret: ${JWT_SECRET}
+#  expiration: ${JWT_EXPIRATION}

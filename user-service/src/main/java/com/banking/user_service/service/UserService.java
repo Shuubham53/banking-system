@@ -52,7 +52,13 @@ public class UserService {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .build();
-        userEventProducer.publishUserCreatedEvent(event);
+        try {
+            userEventProducer.publishUserCreatedEvent(event);
+            log.info("Kafka event published for userId: {}", user.getId());
+        } catch (Exception e) {
+            log.error("CRITICAL: Kafka event failed for userId: {}. Manual intervention required!",
+                    user.getId());
+        }
         return "User registered successfully";
     }
 
