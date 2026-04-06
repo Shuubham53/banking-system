@@ -1,4 +1,4 @@
-package com.banking.transactionservice.service;
+package com.banking.transactionservice.security;
 
 
 import io.jsonwebtoken.io.IOException;
