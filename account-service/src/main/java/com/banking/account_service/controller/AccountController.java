@@ -49,7 +49,8 @@ public class AccountController {
         AccountResponse response = accountService.updateAccountStatus(accountNumber,status);
         return ResponseEntity.ok(ApiResponse.success("Account status updated successfully",response));
     }
-    @PatchMapping("/{accountNumber}/balance")
+
+    @PostMapping("/{accountNumber}/balance")
     public ResponseEntity<ApiResponse<AccountResponse>> updateBalance(
             @PathVariable String accountNumber,
             @RequestParam BigDecimal amount) {
