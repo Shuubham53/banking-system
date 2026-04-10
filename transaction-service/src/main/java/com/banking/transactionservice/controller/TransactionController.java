@@ -2,6 +2,7 @@ package com.banking.transactionservice.controller;
 
 import com.banking.transactionservice.dto.TransactionRequest;
 import com.banking.transactionservice.dto.TransactionResponse;
+
 import com.banking.transactionservice.error.ApiResponse;
 import com.banking.transactionservice.service.TransactionService;
 import jakarta.validation.Valid;
@@ -21,6 +22,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping("/deposit")
+
     public ResponseEntity<ApiResponse<TransactionResponse>> deposit(
             @Valid @RequestBody TransactionRequest request){
         log.info("Deposit request for account: {}", request.getToAccountNumber());
@@ -55,3 +57,6 @@ public class TransactionController {
         return ResponseEntity.ok(ApiResponse.success("Transaction history", response));
     }
 }
+
+
+
