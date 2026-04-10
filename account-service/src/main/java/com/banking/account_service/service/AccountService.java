@@ -75,6 +75,16 @@ public class AccountService {
                 .build();
 
     }
+    @Transactional
+    public AccountResponse updateBalance(String accountNumber, BigDecimal amount) {
+        log.info("Updating balance for account: {}", accountNumber);
+        Account account = accountRepository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
+        account.setBalance(account.getBalance().add(amount));
+        accountRepository.save(account);
+        log.info("Balance updated for account: {}", accountNumber);
+        return mapToResponse(account);
+    }
 
     public List<AccountResponse> getAccountsByUserId(Long userId) {
         List<Account> accounts = accountRepository.findByUserId(userId);

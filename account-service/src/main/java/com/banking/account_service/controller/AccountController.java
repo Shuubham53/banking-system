@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -47,6 +48,14 @@ public class AccountController {
         log.info("Updating status for account: {}", accountNumber);
         AccountResponse response = accountService.updateAccountStatus(accountNumber,status);
         return ResponseEntity.ok(ApiResponse.success("Account status updated successfully",response));
+    }
+    @PostMapping("/{accountNumber}/balance")
+    public ResponseEntity<ApiResponse<AccountResponse>> updateBalance(
+            @PathVariable String accountNumber,
+            @RequestParam BigDecimal amount) {
+        log.info("Updating balance for account: {}", accountNumber);
+        AccountResponse response = accountService.updateBalance(accountNumber, amount);
+        return ResponseEntity.ok(ApiResponse.success("Balance updated", response));
     }
 
 }
