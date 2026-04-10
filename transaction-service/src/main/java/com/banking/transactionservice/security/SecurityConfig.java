@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .sessionManagement(session->session.
                         sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/customers/public/**").permitAll()
+                        .requestMatchers("/api/transactions/public/**").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
