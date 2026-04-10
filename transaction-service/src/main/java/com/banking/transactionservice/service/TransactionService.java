@@ -28,23 +28,6 @@ public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final AccountClient accountClient;
-//    // get account via Feign
-//    AccountResponse account = accountClient
-//            .getAccountByAccountNumber(accountNumber).getData();
-//
-//// check account is active
-//if (!account.getAccountStatus().equals(AccountStatus.ACTIVE)) {
-//        throw new InvalidTransactionException("Account is not active");
-//    }
-//
-//// check sufficient balance
-//if (account.getBalance().compareTo(request.getAmount()) < 0) {
-//        throw new InsufficientBalanceException("Insufficient balance");
-//    }
-//
-//// update balance — pass negative for debit, positive for credit
-//accountClient.updateBalance(accountNumber, request.getAmount().negate()); // debit
-//accountClient.updateBalance(accountNumber, request.getAmount());
 
     @Transactional
     public TransactionResponse deposit(TransactionRequest request) {
