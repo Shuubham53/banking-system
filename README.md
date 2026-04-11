@@ -1,8 +1,8 @@
-﻿# 🏦 Banking System — Microservices
+# 🏦 Banking System — Microservices
 
-> 🚧 **Under Active Development** — This project is currently being built module by module.
+> 🚧 **Under Active Development**
 
-A production-grade banking backend built with Spring Boot Microservices.
+A banking backend built with Spring Boot Microservices.
 
 ---
 
@@ -10,12 +10,12 @@ A production-grade banking backend built with Spring Boot Microservices.
 
 | Service | Port | Status |
 |---|---|---|
-| `service-registry` | 8761 | 🟡 In Progress |
-| `api-gateway` | 8080 | ⚪ Planned |
-| `user-service` | 8081 | ⚪ Planned |
-| `customer-service` | 8082 | ⚪ Planned |
-| `account-service` | 8083 | ⚪ Planned |
-| `transaction-service` | 8084 | ⚪ Planned |
+| `service-registry` | 8761 | ✅ Complete |
+| `api-gateway` | 8080 | ✅ Complete |
+| `user-service` | 8081 | ✅ Complete |
+| `customer-service` | 8082 | ✅ Complete |
+| `account-service` | 8083 | ✅ Complete |
+| `transaction-service` | 8084 | ✅ Complete |
 
 ---
 
@@ -24,206 +24,14 @@ A production-grade banking backend built with Spring Boot Microservices.
 - Java 17, Spring Boot 3.x
 - Spring Security + JWT
 - Spring Cloud (Eureka, Gateway, Feign)
-- Apache Kafka
-- PostgreSQL, Redis
-- Docker
+- Apache Kafka, PostgreSQL, Docker
 
 ---
 
 ## Author
 
-**Your Name** — [GitHub](https://github.com/YOUR_USERNAME)
+**Shubham** — [GitHub](https://github.com/Shuubham53)
 
 ---
 
-> 📌 Full README with setup instructions, architecture diagram, and API docs will be added once development is complete.
-
----
-<!-- SAVE THIS SECTION — Full README draft is ready, replace this file when project is complete -->
-<!--
-FULL README LOCATION: Saved separately as README_FULL.md
-Ask Claude: "give me the full banking system README" to get it back anytime
--->
-
-# 🏦 Banking System — Enterprise Microservices (DRAFT - DO NOT DELETE)
-
-A production-grade banking backend built with **Spring Boot Microservices**, featuring JWT authentication, KYC verification, real-time fraud detection, Kafka event streaming, Spring Batch statements, and Docker deployment.
-
-> Built as a full learning project covering real-world backend engineering patterns used in fintech companies.
-
----
-
-## 🏗️ Architecture Overview
-
-```
-                        ┌─────────────────────┐
-                        │   Eureka Registry    │
-                        │     :8761            │
-                        └──────────┬──────────┘
-                                   │ all services register here
-          ┌────────────────────────┼────────────────────────┐
-          ↓                        ↓                        ↓
-  [user-service]          [account-service]      [transaction-service]
-     :8081                    :8083                    :8084
-          ↓                        ↓                        ↓
-          └────────────────────────┴────────────────────────┘
-                                   ↑
-                        ┌──────────┴──────────┐
-                        │     API Gateway      │
-                        │       :8080          │
-                        └──────────┬──────────┘
-                                   ↑
-                            Mobile / Frontend
-```
-
----
-
-## 📦 Services
-
-| Service | Port | Description |
-|---|---|---|
-| `service-registry` | 8761 | Eureka Server — service discovery |
-| `api-gateway` | 8080 | Spring Cloud Gateway — routing, JWT validation |
-| `user-service` | 8081 | Authentication, JWT, roles |
-| `customer-service` | 8082 | KYC, customer profiles, documents |
-| `account-service` | 8083 | Account management, balances |
-| `transaction-service` | 8084 | Deposits, withdrawals, transfers, fraud detection |
-
----
-
-## 🛠️ Tech Stack
-
-**Backend**
-- Java 17
-- Spring Boot 3.x
-- Spring Security 6 + JWT
-- Spring Cloud (Eureka, Gateway, Feign)
-- Spring Batch (statement generation)
-- Apache Kafka (async event streaming)
-
-**Database**
-- PostgreSQL (per-service database)
-- Redis (caching)
-- Flyway (database migrations)
-
-**DevOps**
-- Docker & Docker Compose
-- GitHub Actions (CI/CD)
-- Kubernetes (deployment)
-
-**Observability**
-- Micrometer + Zipkin (distributed tracing)
-- Spring Boot Actuator
-- ELK Stack (logging)
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Java 17+
-- Maven 3.8+
-- Docker & Docker Compose
-- PostgreSQL
-
-### Run with Docker Compose
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/banking-system.git
-cd banking-system
-
-# Start all services
-docker-compose up -d
-
-# Verify services are running
-docker-compose ps
-```
-
-### Run Individually (Development)
-```bash
-# 1. Start service registry first
-cd service-registry
-mvn spring-boot:run
-
-# 2. Start api-gateway
-cd ../api-gateway
-mvn spring-boot:run
-
-# 3. Start any service
-cd ../user-service
-mvn spring-boot:run
-```
-
----
-
-## 📁 Project Structure
-
-```
-banking-system/
-├── service-registry/         # Eureka Server
-├── api-gateway/              # Spring Cloud Gateway
-├── user-service/             # Auth & User Management
-├── customer-service/         # KYC & Customer Profiles
-├── account-service/          # Account Operations
-├── transaction-service/      # Transactions & Fraud
-├── docker-compose.yml        # Full stack orchestration
-└── README.md
-```
-
----
-
-## 🔐 Security
-
-- JWT-based authentication (access + refresh tokens)
-- Role-based access control: `ADMIN`, `TELLER`, `CUSTOMER`
-- Centralized JWT validation at API Gateway
-- KYC verification before account activation
-
----
-
-## 📊 Key Features
-
-- ✅ User registration & login with JWT
-- ✅ KYC document upload & verification workflow
-- ✅ Account creation (SAVINGS, CHECKING)
-- ✅ Deposits, withdrawals, fund transfers
-- ✅ Real-time fraud detection via Kafka Streams
-- ✅ Monthly account statement generation (Spring Batch + PDF)
-- ✅ Email/SMS notifications via Kafka events
-- ✅ Distributed tracing across services
-
----
-
-## 🌿 Branch Strategy
-
-```
-main                          # stable, production-ready
-dev                           # integration branch
-feature/service-registry      # per-service feature branches
-feature/api-gateway
-feature/user-service
-feature/customer-service
-feature/account-service
-feature/transaction-service
-```
-
----
-
-## 📬 API Documentation
-
-Once services are running, Swagger UI is available at:
-```
-http://localhost:8080/swagger-ui.html   # via gateway
-```
-
----
-
-## 🤝 Author
-
-**Your Name**  
-[GitHub](https://github.com/Shuubham53) 
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+> 📌 Full README with setup instructions will be added once development is complete.
