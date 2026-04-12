@@ -30,18 +30,25 @@ public class AccountService {
     @Transactional
     public AccountResponse createAccount(AccountRequest request) {
         log.info("Creating account for customerId: {}", request.getCustomerId());
-        try{
+        try {
             ApiResponse<CustomerResponse> customerResponse =
                     customerClient.getCustomerByUserId(request.getUserId());
 
-            if(customerResponse == null || !customerResponse.isSuccess()){
-                throw new RuntimeException("Customer Not Found");
+            if (customerResponse == null || !customerResponse.isSuccess()) {
+                throw new RuntimeException("Customer not found");
             }
+            CustomerResponse customer = customerResponse.getData();
+            if (!customer.getKycStatus().equals("VERIFIED")) {
+                throw new RuntimeException("KYC not verified. Please complete KYC before opening an account.");
+            }
+
+        } catch (RuntimeException e) {
+            log.error("Account creation failed: {}", e.getMessage());
+            throw e;
         } catch (Exception e) {
-            log.error("Customer validation failed {}",e.getMessage());
+            log.error("Customer validation failed: {}", e.getMessage());
             throw new RuntimeException("Customer not found with userId: " + request.getUserId());
         }
-
         accountRepository.findByCustomerIdAndAccountType(
                         request.getCustomerId(), request.getAccountType())
                 .ifPresent(a -> {
