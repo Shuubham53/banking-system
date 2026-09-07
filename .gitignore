@@ -1,0 +1,19 @@
+# Build output
+target/
+*/target/
+
+# IDE
+.idea/
+*.iml
+*/*.iml
+
+# Local secrets — never commit these
+**/application-local.properties
+**/application-local.yaml
+**/application-local.yml
+
+# OS
+.DS_Store
+
+# Maven wrapper (optional, keep if you use these)
+.mvn/wrapper/maven-wrapper.jar
